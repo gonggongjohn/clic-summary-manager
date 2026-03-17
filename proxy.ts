@@ -9,7 +9,7 @@ export async function proxy(request: NextRequest) {
   const isProtected = protectedPaths.some((path) =>
     pathname === path || pathname.startsWith(`${path}/`)
   );
-
+  
   const user = await getCurrentUser(request);
 
   if (isProtected && !user) {

@@ -50,7 +50,10 @@ export function AppSidebar() {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(`${API_BASE_URL}/user/me`, {credentials: 'include'});
+        const response = await fetch(`${API_BASE_URL}/user/me`, {
+          method: 'GET',
+          credentials: 'include'
+        });
 
         if (!response.ok) {
           throw new Error(`Failed to fetch user info`);

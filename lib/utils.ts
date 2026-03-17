@@ -28,7 +28,6 @@ export async function getCurrentUser(request: NextRequest) {
   });
 
   if (!res.ok) {
-    console.log(request.headers)
     return null;
   }
 
