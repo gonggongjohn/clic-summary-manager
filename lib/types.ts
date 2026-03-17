@@ -1,16 +1,14 @@
-export type CaseStatus = "raw" | "ai_processed" | "verified";
+export type CaseStatus = "raw" | "summarized" | "verified";
 
 export type CaseItem = {
-  id: string;
-  title: string;
-  client: string;
-  matterNumber: string;
-  updatedAt: string;
+  neutral_citation: string;
+  name: string;
   status: CaseStatus;
   model: string;
   prompt: string;
-  htmlContent: string;
-  aiSummary: string;
+  content: string;
+  generatedSummary: string;
+  verifiedSummary: string;
 };
 
 export type User = {

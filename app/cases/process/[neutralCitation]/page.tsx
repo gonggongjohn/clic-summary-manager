@@ -1,22 +1,21 @@
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/layout/app-shell";
 import { CaseProcessingClient } from "@/components/case/case-processing-client";
-import { mockCases } from "@/lib/mock-data";
 
-export default function ProcessCasePage({
+export default async function ProcessCasePage({
   params,
 }: {
-  params: { caseId: string };
+  params: Promise<{ neutralCitation?: string }>;
 }) {
-  const caseItem = mockCases.find((item) => item.id === params.caseId);
+  const { neutralCitation } = await params;
 
-  if (!caseItem) {
+  if (!neutralCitation) {
     notFound();
   }
 
   return (
     <AppShell>
-      <CaseProcessingClient caseItem={caseItem} />
+      <CaseProcessingClient neutralCitation={neutralCitation} />
     </AppShell>
   );
 }

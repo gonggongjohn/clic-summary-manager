@@ -1,22 +1,21 @@
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/layout/app-shell";
 import { CaseVerificationClient } from "@/components/case/case-verification-client";
-import { mockCases } from "@/lib/mock-data";
 
-export default function VerifyCasePage({
+export default async function VerifyCasePage({
   params,
 }: {
-  params: { caseId: string };
+  params: Promise<{ neutralCitation?: string }>;
 }) {
-  const caseItem = mockCases.find((item) => item.id === params.caseId);
+  const { neutralCitation } = await params;
 
-  if (!caseItem) {
+  if (!neutralCitation) {
     notFound();
   }
 
   return (
     <AppShell>
-      <CaseVerificationClient caseItem={caseItem} />
+      <CaseVerificationClient neutralCitation={neutralCitation} />
     </AppShell>
   );
 }
