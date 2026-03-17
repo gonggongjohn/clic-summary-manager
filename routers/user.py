@@ -54,8 +54,8 @@ def user_login(payload: LoginRequest, response: Response, db: Session = Depends(
         key=SESSION_COOKIE_NAME,
         value=session.id,
         httponly=True,
-        secure=True,      # set True in HTTPS production
-        samesite="none",    # use "none" only if you truly need cross-site cookies over HTTPS
+        secure=False,      # set True in HTTPS production
+        samesite="lax",    # use "none" only if you truly need cross-site cookies over HTTPS
         max_age=1 * 24 * 60 * 60,
         path="/",
     )
